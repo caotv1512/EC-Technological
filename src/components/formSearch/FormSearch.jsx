@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./FormSearch.scss";
 import arrivals from "../../../public/assets/imgs/categories/products.png";
 import computer from "../../../public/assets/imgs/categories/computer.png";
@@ -12,7 +12,9 @@ import lighting from "../../../public/assets/imgs/categories/desk-lamp.png";
 import drones from "../../../public/assets/imgs/categories/drone.png";
 import logo from "../../../public/assets/imgs/logo/mercado-suppermarket-store-logo-1633487728.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import { getCategoryApi } from "../../api/categoryApi";
 export default function FormSearch() {
+  const [category, setCategory] = useState([]);
   const navigate = useNavigate();
   const dataCategory = [
     {
@@ -66,6 +68,7 @@ export default function FormSearch() {
       title: "Drones",
     },
   ];
+
   const dataFashion = [
     {
       id: 1,
@@ -149,6 +152,14 @@ export default function FormSearch() {
       span: "construction",
     },
   ];
+  // lay thong tin category
+  const getCategory = async () => {
+    const res = await getCategoryApi();
+    setCategory(res.data);
+  };
+  useEffect(() => {
+    getCategory();
+  }, []);
   return (
     <>
       <div className="formSearch__container">
@@ -192,32 +203,17 @@ export default function FormSearch() {
         <div className="homePage__nav__category" onClick={() => navigate("/")}>
           <span className="material-symbols-outlined">home</span>
           <p>Trang chủ</p>
-          {/* <div className="homePage__nav__category__hover">
-            <ul>
-              {dataCategory.map((item) => (
-                <Link to={`/${item.title}`}>
-                  <li key={item.id}>
-                    <img src={item.img} alt="" />
-                    <p>{item.title}</p>
-                  </li>
-                </Link>
-              ))}
-            </ul>
-          </div> */}
         </div>
-
         <div className="homePage__nav__item">
           <ul>
             <li className="homePage__nav__item__fashion">
               <p>Thương hiệu</p>
               <div className="homePage__nav__item__fashion__hover">
                 <ul>
-                  {dataFashion.map((item) => (
+                  {category?.map((item) => (
                     <li key={item.id}>
-                      <span className="material-symbols-outlined">
-                        {item.span}
-                      </span>
-                      <p>{item.title}</p>
+                      <span className="material-symbols-outlined">android</span>
+                      <p>{item.name}</p>
                     </li>
                   ))}
                 </ul>

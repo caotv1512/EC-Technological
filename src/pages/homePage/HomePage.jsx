@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Pagination } from "antd";
 import arrivals from "../../../public/assets/imgs/categories/products.png";
 import computer from "../../../public/assets/imgs/categories/computer.png";
 import photography from "../../../public/assets/imgs/categories/smartphone.png";
@@ -29,7 +30,19 @@ import about3 from "../../../public/assets/imgs/about/mercado_support3.png";
 import about4 from "../../../public/assets/imgs/about/mercado_support4.png";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getProductApi } from "../../api/productApis";
 export default function HomePage() {
+  const [dataProduct, setDataProduct] = useState([]);
+  // phan trang
+  const pageSize = 6;
+  const [current, setCurrent] = useState(1);
+  const handlePageChange = (page) => {
+    setCurrent(page);
+  };
+  const currentData = dataProduct.slice(
+    (current - 1) * pageSize,
+    current * pageSize
+  );
   // slider
   var settings = {
     // dots: true,
@@ -44,56 +57,64 @@ export default function HomePage() {
     AOS.init({ duration: 2000 });
   }, []);
   // du lieu san pham
-  const dataProduct = [
-    {
-      id: 1,
-      img: product,
-      imgHover: productHover,
-      descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
-      useFor: "Studio Design",
-      price: "100",
-    },
-    {
-      id: 2,
-      imgHover: productHover,
-      img: product,
-      descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
-      useFor: "Graphic Corner",
-      price: "200",
-    },
-    {
-      id: 3,
-      imgHover: productHover,
-      img: product,
-      useFor: "Studio Design",
-      descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
-      price: "100",
-    },
-    {
-      id: 4,
-      imgHover: productHover,
-      img: product,
-      useFor: "Graphic Corner",
-      descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
-      price: "200",
-    },
-    {
-      id: 5,
-      imgHover: productHover,
-      img: product,
-      useFor: "Studio Design",
-      descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
-      price: "100",
-    },
-    {
-      id: 6,
-      imgHover: productHover,
-      img: product,
-      useFor: "Graphic Corner",
-      descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
-      price: "200",
-    },
-  ];
+  const getProduct = async () => {
+    const res = await getProductApi();
+    setDataProduct(res.data);
+  };
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  // const dataProduct = [
+  //   {
+  //     id: 1,
+  //     img: product,
+  //     imgHover: productHover,
+  //     descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
+  //     useFor: "Studio Design",
+  //     price: "100",
+  //   },
+  //   {
+  //     id: 2,
+  //     imgHover: productHover,
+  //     img: product,
+  //     descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
+  //     useFor: "Graphic Corner",
+  //     price: "200",
+  //   },
+  //   {
+  //     id: 3,
+  //     imgHover: productHover,
+  //     img: product,
+  //     useFor: "Studio Design",
+  //     descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
+  //     price: "100",
+  //   },
+  //   {
+  //     id: 4,
+  //     imgHover: productHover,
+  //     img: product,
+  //     useFor: "Graphic Corner",
+  //     descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
+  //     price: "200",
+  //   },
+  //   {
+  //     id: 5,
+  //     imgHover: productHover,
+  //     img: product,
+  //     useFor: "Studio Design",
+  //     descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
+  //     price: "100",
+  //   },
+  //   {
+  //     id: 6,
+  //     imgHover: productHover,
+  //     img: product,
+  //     useFor: "Graphic Corner",
+  //     descreption: "Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone",
+  //     price: "200",
+  //   },
+  // ];
   const dataProductRespon = [
     {
       id: 1,
@@ -327,7 +348,7 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="homePage__body__hotSale--right__product">
-                {dataProduct.map((product) => (
+                {currentData.map((product) => (
                   <Link to={"/productDetail/" + product.id}>
                     <div
                       className="homePage__body__hotSale--right__product__item"
@@ -335,10 +356,10 @@ export default function HomePage() {
                       data-aos="fade-up"
                     >
                       <div className="homePage__body__hotSale--right__product__item__img">
-                        <img src={product.img} alt="" />
+                        <img src={product.images[0]?.url} alt="" />
                       </div>
                       <div className="homePage__body__hotSale--right__product__item__hover">
-                        <img src={product.imgHover} alt="" />
+                        <img src={product.images[0]?.url} alt="" />
                         <div className="homePage__body__hotSale--right__product__item__hover__allicon">
                           <div className="homePage__body__hotSale--right__product__item__hover__wishList divIcon">
                             <span className="material-symbols-outlined">
@@ -358,13 +379,13 @@ export default function HomePage() {
                         </div>
                       </div>
                       <p className="homePage__body__hotSale--right__product__item__title">
-                        {product.useFor}.
+                        {product.category}.
                       </p>
                       <p className="homePage__body__hotSale--right__product__item__description">
-                        {product.descreption}
+                        {product.name}
                       </p>
                       <div className="homePage__body__hotSale--right__product__item__rate">
-                        <Rating name="read-only" value={3} readOnly />
+                        <Rating name="read-only" value={5} readOnly />
                       </div>
                       <div className="homePage__body__hotSale--right__product__item__price">
                         <p className="homePage__body__hotSale--right__product__item__price__number">
@@ -380,6 +401,14 @@ export default function HomePage() {
                   </Link>
                 ))}
               </div>
+              <Pagination
+                current={current}
+                pageSize={pageSize}
+                total={dataProduct.length}
+                onChange={handlePageChange}
+                align="center"
+                style={{ marginTop: "20px" }}
+              />
             </div>
             <div className="homePage__body__hotSale--rightResponsive">
               <div className="homePage__body__hotSale--rightResponsive__product">
