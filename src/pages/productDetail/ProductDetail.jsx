@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductDetail.scss";
 import arrivals from "../../../public/assets/imgs/categories/products.png";
 import computer from "../../../public/assets/imgs/categories/computer.png";
@@ -29,63 +29,27 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { InputNumber, Space } from "antd";
+import { useParams } from "react-router-dom";
+import { getProductByIdApi } from "../../api/productApis";
 
 export default function ProductDetail() {
+  const { id } = useParams();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [product, setProduct] = useState([]);
 
-  const dataCategory = [
-    {
-      id: 1,
-      img: arrivals,
-      title: "Arrivals",
-    },
-    {
-      id: 2,
-      img: computer,
-      title: "Computer",
-    },
-    {
-      id: 3,
-      img: photography,
-      title: "Photography",
-    },
-    {
-      id: 4,
-      img: mobile,
-      title: "Mobile",
-    },
-    {
-      id: 5,
-      img: tables,
-      title: "Tables",
-    },
-    {
-      id: 6,
-      img: television,
-      title: "Television",
-    },
-    {
-      id: 7,
-      img: entertaiment,
-      title: "Entertaiment",
-    },
-    {
-      id: 8,
-      img: watch,
-      title: "Smart Watch",
-    },
-    {
-      id: 8,
-      img: lighting,
-      title: "Lighting",
-    },
-    {
-      id: 9,
-      img: drones,
-      title: "Drones",
-    },
-  ];
+
+  console.log(id);
+  
+  const getProduct = async () => {
+    const res = await getProductByIdApi(id);
+    console.log(res, 'getProductByIdApi');
+    setProduct(res.data);
+  };
+  useEffect(() => {
+    getProduct();
+  }, []);
+  
   const images = [
     {
       id: 1,
@@ -104,42 +68,7 @@ export default function ProductDetail() {
       img: product1,
     },
   ];
-  const dataSize = [
-    {
-      id: 1,
-      title: "S",
-    },
-    {
-      id: 2,
-      title: "M",
-    },
-    {
-      id: 3,
-      title: "L",
-    },
-    {
-      id: 4,
-      title: "XL",
-    },
-  ];
-  const dataColor = [
-    {
-      id: 1,
-      title: "Red",
-    },
-    {
-      id: 2,
-      title: "Black",
-    },
-    {
-      id: 3,
-      title: "Blue",
-    },
-    {
-      id: 4,
-      title: "Green",
-    },
-  ];
+
   const security = [
     {
       id: 1,
@@ -171,89 +100,7 @@ export default function ProductDetail() {
       title: "Reviews",
     },
   ];
-  const dataFashion = [
-    {
-      id: 1,
-      title: "Poly",
-      span: "polyline",
-    },
-    {
-      id: 2,
-      title: "Cisco",
-      span: "diamond",
-    },
-    {
-      id: 3,
-      title: "Aver",
-      span: "android",
-    },
-    {
-      id: 4,
-      title: "Jabra",
-      span: "logo_dev",
-    },
-    {
-      id: 5,
-      title: "Maxhub",
-      span: "token",
-    },
-    ,
-    {
-      id: 6,
-      title: "Logitech",
-      span: "settings_heart",
-    },
-    ,
-    {
-      id: 7,
-      title: "North Bayou",
-      span: "cruelty_free",
-    },
-  ];
-  const dataProductNav = [
-    {
-      id: 1,
-      title: "Hội nghị trực tuyến",
-      span: "groups_2",
-    },
-    {
-      id: 2,
-      title: "Camera hội nghị USB",
-      span: "usb",
-    },
-    {
-      id: 3,
-      title: "Loa mic hội nghị",
-      span: "mic",
-    },
-    {
-      id: 4,
-      title: "Điện thoại hội nghị",
-      span: "phone_iphone",
-    },
-    {
-      id: 5,
-      title: "Giá treo thiết bị hội nghị",
-      span: "qr_code_2_add",
-    },
-  ];
-  const dataService = [
-    {
-      id: 1,
-      title: "Dịch vụ cho thuê thiết bị",
-      span: "dynamic_form",
-    },
-    {
-      id: 2,
-      title: "Dịch vụ sửa chữa thiết bị",
-      span: "swipe_vertical",
-    },
-    {
-      id: 3,
-      title: "Dịch vụ bảo hành, bảo trì",
-      span: "construction",
-    },
-  ];
+
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
@@ -267,11 +114,11 @@ export default function ProductDetail() {
           <div className="productDetail__body__linkto">
             <p>Home</p>
             <span class="material-symbols-outlined">chevron_right</span>
-            <p>Computers & Laptops</p>
+            <p>Sản phẩm</p>
             <span class="material-symbols-outlined">chevron_right</span>
-            <p>Desktops</p>
+            <p>Chi tiết sản phẩm</p>
             <span class="material-symbols-outlined">chevron_right</span>
-            <p>Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone</p>
+            <p>{product.name}</p>
           </div>
           <div className="productDetail__body__main">
             <div className="productDetail__body__main--left">
@@ -287,9 +134,9 @@ export default function ProductDetail() {
                   modules={[FreeMode, Navigation, Thumbs]}
                   className="mySwiper2"
                 >
-                  {images.map((image) => (
+                  {product.images?.map((image) => (
                     <SwiperSlide key={image.id} className="mySwiper__Slide">
-                      <img src={image.img} />
+                      <img src={image.url} />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -305,9 +152,9 @@ export default function ProductDetail() {
                   modules={[FreeMode, Navigation, Thumbs]}
                   className="mySwiper"
                 >
-                  {images.map((image) => (
+                  {product.images?.map((image) => (
                     <SwiperSlide key={image.id}>
-                      <img src={image.img} />
+                      <img src={image.url} />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -316,57 +163,33 @@ export default function ProductDetail() {
             <div className="productDetail__body__main--middle">
               <div className="productDetail__body__main--middle--top">
                 <p className="productDetail__body__main--middle--top__name">
-                  Samsung Galaxy S21 Dual-SIM 128GB 5G Smartphone
+                 {product.name}
                 </p>
                 <p className="productDetail__body__main--middle--top__price">
-                  $23.90
+                {product.price}
                 </p>
                 <div className="productDetail__body__main--middle--top__brand flex">
                   <p>
-                    <strong>Brand:</strong>
+                    <strong>Thể loại:</strong>
                   </p>
-                  <p>Sdutio design</p>
+                  <p>{product.category?.name}</p>
                 </div>
-                <div className="productDetail__body__main--middle--top__reference flex">
+                {/* <div className="productDetail__body__main--middle--top__reference flex">
                   <p>
                     <strong>Reference:</strong>
                   </p>
                   <p>demo_1</p>
-                </div>
+                </div> */}
                 <div className="productDetail__body__main--middle--top__stock flex">
                   <p>
-                    <strong>In stock:</strong>
+                    <strong>Số lượng:</strong>
                   </p>
-                  <p>280 Items</p>
+                  <p>{product.stock}</p>
                 </div>
                 <p className="productDetail__body__main--middle--top__description">
-                  Optimized video, optimized sensitivity, optimized speed, the
-                  Sony Alpha a7S III raises the bar for what a full-frame
-                  mirrorless camera is capable of. A revised 12.1MP Exmor R BSI
-                  CMOS sensor and updated BIONZ XR image processor offer faster
-                  performance
+                {product.description}
                 </p>
-                <div className="productDetail__body__main--middle--top__size">
-                  <p>Size:</p>
-                  {dataSize.map((item) => (
-                    <div
-                      className="productDetail__body__main--middle--top__size--item"
-                      key={item.id}
-                    >
-                      <p>{item.title}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="productDetail__body__main--middle--top__color">
-                  <p>Color:</p>
-                  {dataColor.map((item) => (
-                    <div
-                      className="productDetail__body__main--middle--top__color--item"
-                      key={item.id}
-                      style={{ backgroundColor: `${item.title}` }}
-                    ></div>
-                  ))}
-                </div>
+
               </div>
               <div className="productDetail__body__main--middle--middle">
                 <div className="productDetail__body__main--middle--middle__quantity">
@@ -378,16 +201,24 @@ export default function ProductDetail() {
                     onChange={onChange}
                   />
                 </div>
-                <div className="productDetail__body__main--middle--middle__addToCart">
-                  <span className="material-symbols-outlined">
-                    add_shopping_cart
-                  </span>
-                  <p>Add to cart</p>
+                <div
+                  className="productDetail__body__main--middle--middle__addToCart"
+                  onClick={() => {
+                    console.log("CMMMMMM");
+                    alert("Bạn có muốn gọi đến số này không?");
+                    window.open = "tel:+1234567890";
+                    window.location.href = "tel:+0327627261";
+                  }}
+                  style={{ cursor: "pointer" }} // Giúp hiển thị con trỏ khi di chuột qua
+                >
+                  <span className="material-symbols-outlined">phone</span>
+                  <p>Liên hệ</p>
                 </div>
                 <div className="productDetail__body__main--middle--middle__wishList">
                   <span className="material-symbols-outlined">favorite</span>
                 </div>
               </div>
+
               <div className="productDetail__body__main--middle--bottom">
                 <div className="productDetail__body__main--middle--bottom__share flex">
                   <span className="material-symbols-outlined">share</span>

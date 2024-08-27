@@ -26,20 +26,11 @@ export default function Footer() {
               <span className="material-symbols-outlined">support_agent</span>
               <div className="footer--top__one__hotline__text">
                 <p className="footer--top__one__hotline__text__title">
-                  Got questions? Call us 24/7
+                  Mọi thắc mắc xin liên hệ, chúng tôi tư vấn 24/7
                 </p>
                 <p className="footer--top__one__hotline__text__number">
-                  0123 456 789
+                  0962 386 350
                 </p>
-              </div>
-            </div>
-            <div className="footer--top__one__address">
-              <div className="footer--top__one__address__top">
-                <span class="material-symbols-outlined">location_on</span>
-                <p>Contact infor</p>
-              </div>
-              <div className="footer--top__one__address__bot">
-                <p>Toa Song Da, Pham Hung, Ha Noi</p>
               </div>
             </div>
             <div className="footer--top__one__contact">
@@ -50,134 +41,30 @@ export default function Footer() {
               <img src={pinteres} alt="" />
             </div>
           </div>
-          <div className="footer--top__two">
-            <h3>Find In Fast</h3>
-            <ul>
-              <li>Accessories</li>
-              <li>Gaming</li>
-              <li>Laptop&Computer</li>
-              <li>Mac Computer</li>
-              <li>PC Computer</li>
-              <li>Ultrabooks</li>
-            </ul>
+          <div className="footer--top__one">
+            <div className="footer--top__one__address">
+              <div className="footer--top__one__address__top">
+                <span class="material-symbols-outlined">location_on</span>
+                <p>Địa chỉ</p>
+              </div>
+              <div className="footer--top__one__address__bot">
+                <p>T248 Nhật Tảo, P.8, Q. 10, TP. Hồ Chí Minh.</p>
+              </div>
+            </div>
           </div>
-          <div className="footer--top__twoResponse">
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <h3>Find In Fast</h3>
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul>
-                  <li>Accessories</li>
-                  <li>Gaming</li>
-                  <li>Laptop&Computer</li>
-                  <li>Mac Computer</li>
-                  <li>PC Computer</li>
-                  <li>Ultrabooks</li>
-                </ul>
-              </AccordionDetails>
-            </Accordion>
+          <div className="footer--top__one">
+
+            <div className="footer--top__one__address">
+              <div className="footer--top__one__address__top">
+                <span class="material-symbols-outlined">location_on</span>
+                <p>Địa chỉ</p>
+              </div>
+              <div className="footer--top__one__address__bot">
+                <p>T248 Nhật Tảo, P.8, Q. 10, TP. Hồ Chí Minh.</p>
+              </div>
+            </div>
           </div>
-          <div className="footer--top__three">
-            <h3>Information</h3>
-            <ul>
-              <li>About Us</li>
-              <li>Contact Us</li>
-              <li>Suppliers</li>
-              <li>Address</li>
-              <li>Notice</li>
-              <li>Sitemap</li>
-            </ul>
-          </div>
-          <div className="footer--top__threeResponse">
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <h3>Information</h3>
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul>
-                  <li>About Us</li>
-                  <li>Contact Us</li>
-                  <li>Suppliers</li>
-                  <li>Address</li>
-                  <li>Notice</li>
-                  <li>Sitemap</li>
-                </ul>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-          <div className="footer--top__four">
-            <h3>My Account</h3>
-            <ul>
-              <li>About Us</li>
-              <li>Contact Us</li>
-              <li>Suppliers</li>
-              <li>Address</li>
-              <li>Notice</li>
-              <li>Sitemap</li>
-            </ul>
-          </div>
-          <div className="footer--top__fourResponse">
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <h3>My Account</h3>
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul>
-                  <li>About Us</li>
-                  <li>Contact Us</li>
-                  <li>Suppliers</li>
-                  <li>Address</li>
-                  <li>Notice</li>
-                  <li>Sitemap</li>
-                </ul>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-          <div className="footer--top__five">
-            <h3>Service</h3>
-            <ul>
-              <li>About Us</li>
-              <li>Contact Us</li>
-              <li>Suppliers</li>
-              <li>Address</li>
-              <li>Notice</li>
-              <li>Sitemap</li>
-            </ul>
-          </div>
-          <div className="footer--top__fiveResponse">
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <h3>Service</h3>
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul>
-                  <li>About Us</li>
-                  <li>Contact Us</li>
-                  <li>Suppliers</li>
-                  <li>Address</li>
-                  <li>Notice</li>
-                  <li>Sitemap</li>
-                </ul>
-              </AccordionDetails>
-            </Accordion>
-          </div>
+
         </div>
         <div className="footer--bottom">
           <p className="footer--bottom__text">

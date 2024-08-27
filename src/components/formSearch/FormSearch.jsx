@@ -10,7 +10,7 @@ import entertaiment from "../../../public/assets/imgs/categories/gamepad.png";
 import watch from "../../../public/assets/imgs/categories/smartwatch.png";
 import lighting from "../../../public/assets/imgs/categories/desk-lamp.png";
 import drones from "../../../public/assets/imgs/categories/drone.png";
-import logo from "../../../public/assets/imgs/logo/mercado-suppermarket-store-logo-1633487728.jpg";
+import logo from "../../../public/assets/imgs/logo/ANH MINH LOGO.png";
 import { Link, useNavigate } from "react-router-dom";
 import { getCategoryApi } from "../../api/categoryApi";
 export default function FormSearch() {
@@ -165,7 +165,7 @@ export default function FormSearch() {
       <div className="formSearch__container">
         <div className="formSearch--left">
           <Link to={"/"}>
-            <img src={logo} alt="" />
+            <img width={200} src={logo} alt="" />
           </Link>
         </div>
         <div className="formSearch__middle">
@@ -185,7 +185,7 @@ export default function FormSearch() {
               </div>
             </Link>
           </div>
-          <Link to={"/cart"}>
+          {/* <Link to={"/cart"}>
             <div className="formSearch--right__cart">
               <div className="formSearch--right__account__img">
                 <span className="material-symbols-outlined">shopping_cart</span>
@@ -196,7 +196,7 @@ export default function FormSearch() {
                 <p className="text__signin">$0.01</p>
               </div>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="homePage__nav">

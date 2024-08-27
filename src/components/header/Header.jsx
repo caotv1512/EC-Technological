@@ -66,11 +66,11 @@ export default function Header() {
         <div className="header__container--left div-flex">
           <div className="header__phone div-flex div-border">
             <span className="material-symbols-outlined">call</span>
-            <p>+84 123 456 789</p>
+            <p>0962 386 350</p>
           </div>
           <div className="header__email div-flex">
             <span className="material-symbols-outlined">mail</span>
-            <p>3vHkS@example.com</p>
+            <p> infoamt247@gmail.com</p>
           </div>
         </div>
         <div className="header__container--right div-flex">

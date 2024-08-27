@@ -8,6 +8,8 @@ import Computer from "../pages/category/computer/Computer";
 import Smart from "../pages/category/smart/Smart";
 import Watch from "../pages/category/watch/Watch";
 import HomePage from "../pages/homePage/HomePage";
+import ProductList from "../pages/product/ProductList";
+import ProductSection from "../pages/product/ProductSection";
 import ProductDetail from "../pages/productDetail/ProductDetail";
 
 const routesConfig = [
@@ -18,6 +20,10 @@ const routesConfig = [
       {
         path: "",
         element: <HomePage />,
+      },
+      {
+        path: "/product-list",
+        element: <ProductSection />,
       },
     ],
   },
