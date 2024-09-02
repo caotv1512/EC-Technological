@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.scss";
-import logo from "../../../public/assets/imgs/logo/mercado-suppermarket-store-logo-1633487728.jpg";
+import logo from "../../../public/assets/imgs/logo/2.png";
 import fb from "../../../public/assets/imgs/internet/icons8-facebook-50.png";
 import insta from "../../../public/assets/imgs/internet/icons8-instagram-50.png";
 import pinteres from "../../../public/assets/imgs/internet/icons8-pinterest-50.png";
